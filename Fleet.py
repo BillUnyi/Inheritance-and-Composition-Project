@@ -37,7 +37,7 @@ class AircraftCarrier(object):
         ship.draw(win)
 
 def main():
-    win = GraphWin("Fleet", 1900, 1040)
+    win = GraphWin("Fleet", 1900, 1040) #fits my window at home change if nessasary
     win.setBackground("Cyan")
     window = Window(win)
     win.getMouse()
