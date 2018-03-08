@@ -27,14 +27,24 @@ class Fleet(object):
 
 class AircraftCarrier(object):
     """Draws an aircraft carrier and it's squadron"""
-    def __init__(self, x, y, color, background, win):
-        self.drawAircraftCarrier(x, y, color, background, win)
+    def __init__(self, x, y, color, outline, win):
+        self.drawAircraftCarrier(x, y, color, outline, win)
+        airplane1 = Airplane(-100, -100, "Black", "Gray", win)
 
-    def drawAircraftCarrier(self, x, y, color, background, win):
+    def drawAircraftCarrier(self, x, y, color, outline, win):
         ship = Polygon(Point(x, y), Point(x + 350, y), Point(x + 340, y + 100), Point(x + 75, y + 100))
         ship.setFill(color)
-        ship.setOutline(background)
+        ship.setOutline(outline)
         ship.draw(win)
+
+class Airplane(object):
+    """Draws a fighter jet"""
+    def __init__(self, x, y, color, outline, win):
+        self.drawAirplane(x, y, color, outline, win)
+
+    def drawAirplane(self, x, y, color, outline, win):
+        plane = Polygon(Point())
+
 
 def main():
     win = GraphWin("Fleet", 1900, 1040) #fits my window at home change if nessasary
