@@ -1,4 +1,4 @@
-from Graphics import *
+from graphics import *
 
 class Window(object):
     """Draws water and the fleet"""
