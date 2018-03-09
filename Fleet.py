@@ -32,6 +32,7 @@ class AircraftCarrier(object):
         airplane1 = Airplane(x, y, 25, 0, Color.darkGray, "Black", win)
         airplane2 = Airplane(x, y, 250, -300, Color.darkGray, "Black", win)
         airplane3 = Airplane(x, y, -200, -400, Color.darkGray, "Black", win)
+        personel1 = Personel(x, y, 300, -10, "yellow", "black", win)
 
     def drawAircraftCarrier(self, x, y, color, outline, win):
         ship = Polygon(Point(x, y), Point(x + 75, y - 25), Point(x + 300, y - 20), Point(x + 350, y + 10), Point(x + 340, y + 80), Point(x + 100, y + 100))
@@ -66,6 +67,25 @@ class Airplane(object):
         leftWing.setFill(color)
         leftWing.setOutline(outline)
         leftWing.draw(win)
+
+class Personel(object):
+    """draws personel"""
+    def __init__(self, X, Y, x, y, color, outline, win):
+        self.drawPersonel(X, Y, x, y, color, outline, win)
+
+    def drawPersonel(self, X, Y, x, y, color, outline, win):
+        head = Circle(Point(X + x, Y + y), 5)
+        head.setFill(color)
+        head.setOutline(outline)
+        head.draw(win)
+        body = Polygon(Point(X + x - 6, Y + y + 6), Point(X + x + 6, Y + y + 6), Point(X + x + 5, Y + y + 20), Point(X + x - 5, Y + y + 20),)
+        body.setFill("White")
+        body.setOutline(outline)
+        body.draw(win)
+        legs = Polygon(Point(X + x - 5, Y + y + 20), Point(X + x + 5, Y + y + 20), Point(X + x + 4, Y + y + 40), Point(X + x - 4, Y + y + 40))
+        legs.setFill("Blue4")
+        legs.setOutline(outline)
+        legs.draw(win)
 
 class Color(object):
     """Holds colors"""
