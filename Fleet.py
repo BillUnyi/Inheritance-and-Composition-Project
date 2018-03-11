@@ -40,6 +40,7 @@ class AircraftCarrier(object):
         personel6 = Personel(x, y, 240, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
         personel7 = Personel(x, y, 220, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
         personel8 = Personel(x, y, 230, -30, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        boat1 = Boat(x, y, -200, 100, "Gray", "Gray3", win)
 
     def drawAircraftCarrier(self, x, y, color, outline, win):
         ship = Polygon(Point(x, y), Point(x + 75, y - 25), Point(x + 300, y - 20), Point(x + 350, y + 10), Point(x + 340, y + 80), Point(x + 100, y + 100))
@@ -123,6 +124,17 @@ class Personel(object):
         line.setOutline(outline)
         line.draw(win)
 
+class Boat(object):
+    """draws a boat"""
+    def __init__(self, X, Y, x, y, color, outline, win):
+         self.drawBoat(X, Y, x, y, color, outline, win)
+
+    def drawBoat(self, X, Y, x, y, color, outline, win):
+        boat = Polygon(Point(X+x,Y+y),Point(X + x + 175, Y + y), Point(X + x + 125, Y + y + 50),Point(X + x + 75,Y + y + 50),Point(X + x,Y + y),Point(X + x + 75, Y + y - 25),Point(X + x + 100, Y + y))
+        boat.setFill(color)
+        boat.setOutline(outline)
+        boat.draw(win)
+
 class Color(object):
     """Holds colors"""
     lightGray = color_rgb(121, 121, 121)
@@ -133,7 +145,7 @@ class Color(object):
     darkTan = color_rgb(97, 48, 0)
 
 def main():
-    win = GraphWin("Fleet", 1900, 1040) #fits my window at home,c change if nessasary
+    win = GraphWin("Fleet", 1900, 1040) #fits my window at home, change if nessasary
     win.setBackground("Cyan")
     window = Window(win)
     win.getMouse()
