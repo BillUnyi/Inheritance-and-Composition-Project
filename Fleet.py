@@ -96,7 +96,10 @@ class SuperAirplane(Airplane):
         star.draw(win)
 
     def drawFlames(self, X, Y, x, y, win):
-        flames = Polygon(Point()) #left off here
+        flames = Polygon(Point(X + x + 150, Y + y - 15), Point(X + x + 165, Y + y - 20), Point(X + x + 158, Y + y))
+        flames.setFill("Orange")
+        flames.setOutline("Yellow")
+        flames.draw(win)
 
 class Personel(object):
     """draws personel"""
