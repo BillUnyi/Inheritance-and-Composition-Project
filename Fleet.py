@@ -81,8 +81,7 @@ class Airplane(object):
         leftWing.draw(win)
 
 class SuperAirplane(Airplane):
-    """draws an airplane with extra detail"""
-    def __init__(self, X, Y, x, y, mainColor, outline, win):
+    """draws an airplane with extra detail"""    def __init__(self, X, Y, x, y, mainColor, outline, win):
         super().__init__(X, Y, x, y, mainColor, outline, win)
         self.drawStar(X, Y, x, y, win)
         self.drawFlames(X, Y, x, y, win)
@@ -133,7 +132,8 @@ class Boat(object):
          self.drawBoat(X, Y, x, y, color, outline, win)
 
     def drawBoat(self, X, Y, x, y, color, outline, win):
-        boat = Polygon(Point(X+x,Y+y),Point(X + x + 175, Y + y), Point(X + x + 125, Y + y + 50),Point(X + x + 75,Y + y + 50),Point(X + x,Y + y),Point(X + x + 75, Y + y - 25),Point(X + x + 100, Y + y))
+        boat = Polygon(Point(X + x, Y + y), Point(X + x + 175, Y + y), Point(X + x + 125, Y + y + 50), Point(X + x + 75, Y + y + 50),
+                       Point(X + x, Y + y), Point(X + x + 75, Y + y - 25), Point(X + x + 100, Y + y - 25), Point(X + x + 175, Y + y))
         boat.setFill(color)
         boat.setOutline(outline)
         boat.draw(win)
