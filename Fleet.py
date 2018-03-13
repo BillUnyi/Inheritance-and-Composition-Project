@@ -1,4 +1,5 @@
 from graphics import *
+import time
 
 class Window(object):
     """Draws water and the fleet"""
@@ -138,7 +139,7 @@ class Boat(object):
         boat.draw(win)
 
     def drawComandcenter(self, X, Y, x, y, color, outline, win):
-        tower = Polygon(Point(X + x + 40, Y + y - 40),Point(X + x + 40,Y + y + 20))
+        tower = Polygon(Point(X + x + 80, Y + y - 20),Point(X + x + 80,Y + y - 70),Point(X + x + 105,Y + y - 70),Point(X + x + 105,Y + y - 20))
         tower.setFill(color)
         tower.setOutline(outline)
         tower.draw(win)
@@ -156,7 +157,15 @@ def main():
     win = GraphWin("Fleet", 1900, 1040) #fits my window at home, change if nessasary
     win.setBackground("Cyan")
     window = Window(win)
-    win.getMouse()
+    while win.checkMouse() == None:
+        win.setBackground("Cyan")
+        time.sleep(1)
+        win.setBackground("Red")
+        time.sleep(1)
+        win.setBackground("Green")
+        time.sleep(1)
+        win.setBackground("Purple")
+        time.sleep(1)
     win.close()
 
 main()
