@@ -9,8 +9,11 @@ class Window(object):
 class Water(object):
     """draws the water"""
     def __init__(self, color, win):
-        self.color = color
         self.drawWater(color, win)
+        self.drawIsland(win)
+        tank1 = SuperTank(0, 0, 1350, 480, Color.lightGray, Color.darkGray, win)
+        tank2 = SuperTank(0, 0, 1475, 470, Color.lightGray, Color.darkGray, win)
+        tank3 = SuperTank(0, 0, 1560, 480, Color.lightGray, Color.darkGray, win)
 
     def drawWater(self, color, win):
         water = Rectangle(Point(-25, 500), Point(1925, 1050))
@@ -18,12 +21,18 @@ class Water(object):
         water.setOutline(color)
         water.draw(win)
 
+    def drawIsland(self, win):
+        island = Polygon(Point(1700, 500), Point(1500, 475), Point(1300, 500))
+        island.setFill(Color.tan)
+        island.setOutline("Black")
+        island.draw(win)
+
 class Fleet(object):
     """draws everything from the fleet"""
     def __init__(self, win):
         aircraftCarrier1 = AircraftCarrier(400, 550, "Gray", "Gray3", win)
         aircraftCarrier2 = AircraftCarrier(600, 700, "Gray", "Gray3", win)
-        aircraftCarrier3 = AircraftCarrier(1300, 600, "Gray", "Gray3", win)
+        aircraftCarrier3 = SuperAircraftCarrier(1300, 600, "Gray", "Gray3", win)
 
 class AircraftCarrier(object):
     """Draws an aircraft carrier and it's squadron"""
@@ -32,15 +41,16 @@ class AircraftCarrier(object):
         airplane1 = Airplane(x, y, 25, 0, Color.darkGray, "Black", win)
         airplane2 = SuperAirplane(x, y, 250, -300, Color.darkGray, "Black", win)
         airplane3 = SuperAirplane(x, y, -200, -400, Color.darkGray, "Black", win)
-        personel1 = Personel(x, y, 300, -30, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
-        personel2 = Personel(x, y, 320, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
-        personel3 = Personel(x, y, 280, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
-        personel4 = Personel(x, y, 275, -35, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
-        personel5 = Personel(x, y, 260, -30, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
-        personel6 = Personel(x, y, 240, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
-        personel7 = Personel(x, y, 220, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
-        personel8 = Personel(x, y, 230, -30, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        personnel1 = Personnel(x, y, 300, -30, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel2 = Personnel(x, y, 320, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        personnel3 = Personnel(x, y, 280, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel4 = Personnel(x, y, 275, -35, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel5 = Personnel(x, y, 240, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        personnel6 = Personnel(x, y, 220, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel7 = Personnel(x, y, 230, -30, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        captain = Captain(x, y, 260, -30, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
         boat1 = Boat(x, y, -200, 100, "Gray", "Gray3", win)
+        boat2 = SuperBoat(x, y, -300, 200, "Gray", "Gray3", win)
 
     def drawAircraftCarrier(self, x, y, color, outline, win):
         ship = Polygon(Point(x, y), Point(x + 75, y - 25), Point(x + 300, y - 20), Point(x + 350, y + 10), Point(x + 340, y + 80), Point(x + 100, y + 100))
@@ -52,6 +62,41 @@ class AircraftCarrier(object):
         shipBase.setOutline(outline)
         shipBase.draw(win)
         line = Line(Point(x + 100, y + 100), Point(x + 100, y + 20))
+        line.setOutline(outline)
+        line.draw(win)
+
+class SuperAircraftCarrier(AircraftCarrier):
+    """Includes a tank"""
+    def __init__(self, x, y, color, outline, win):
+        self.drawAircraftCarrier(x, y, color, outline, win)
+        airplane1 = Airplane(x, y, 25, 0, Color.darkGray, "Black", win)
+        airplane2 = SuperAirplane(x, y, 250, -300, Color.darkGray, "Black", win)
+        airplane3 = SuperAirplane(x, y, -200, -400, Color.darkGray, "Black", win)
+        personnel1 = Personnel(x, y, 300, -30, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel2 = Personnel(x, y, 320, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        personnel3 = Personnel(x, y, 280, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel4 = Personnel(x, y, 275, -35, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel5 = Personnel(x, y, 240, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        personnel6 = Personnel(x, y, 220, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel7 = Personnel(x, y, 230, -30, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        captain = Captain(x, y, 260, -30, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        boat1 = Boat(x, y, -200, 100, "Gray", "Gray3", win)
+        boat2 = SuperBoat(x, y, -300, 200, "Gray", "Gray3", win)
+        tank1 = Tank(x, y, 350, -30, Color.lightGray, Color.darkGray, win)
+        tank2 = Tank(x, y, 375, -5, Color.lightGray, Color.darkGray, win)
+
+    def drawAircraftCarrier(self, x, y, color, outline, win):
+        ship = Polygon(Point(x, y), Point(x + 112, y - 37), Point(x + 450, y - 30), Point(x + 525, y + 15),
+                       Point(x + 510, y + 120), Point(x + 150, y + 150))
+        ship.setFill(color)
+        ship.setOutline(outline)
+        ship.draw(win)
+        shipBase = Polygon(Point(x, y), Point(x + 112, y - 37), Point(x + 450, y - 30), Point(x + 525, y + 15),
+                           Point(x + 150, y + 30))
+        shipBase.setFill(color)
+        shipBase.setOutline(outline)
+        shipBase.draw(win)
+        line = Line(Point(x + 150, y + 150), Point(x + 150, y + 30))
         line.setOutline(outline)
         line.draw(win)
 
@@ -81,10 +126,11 @@ class Airplane(object):
         leftWing.draw(win)
 
 class SuperAirplane(Airplane):
-    """draws an airplane with extra detail"""    def __init__(self, X, Y, x, y, mainColor, outline, win):
+    """draws an airplane with extra detail"""
+    def __init__(self, X, Y, x, y, mainColor, outline, win):
+        self.drawFlames(X, Y, x, y, win)
         super().__init__(X, Y, x, y, mainColor, outline, win)
         self.drawStar(X, Y, x, y, win)
-        self.drawFlames(X, Y, x, y, win)
 
     def drawStar(self, X, Y, x, y, win):
         star = Polygon(Point(X + x + 60, Y + y - 9), Point(X + x + 62, Y + y - 4), Point(X + x + 68, Y + y + - 4), Point(X + x + 64, Y + y),
@@ -95,17 +141,18 @@ class SuperAirplane(Airplane):
         star.draw(win)
 
     def drawFlames(self, X, Y, x, y, win):
-        flames = Polygon(Point(X + x + 150, Y + y - 15), Point(X + x + 165, Y + y - 20), Point(X + x + 158, Y + y))
-        flames.setFill("Orange")
-        flames.setOutline("Yellow")
+        flames = Polygon(Point(X + x + 150, Y + y - 15), Point(X + x + 165, Y + y - 20), Point(X + x + 160, Y + y - 12), Point(X + x + 175, Y + y - 15),
+                         Point(X + x + 165, Y + y - 5), Point(X + x + 180, Y + y), Point(X + x + 158, Y + y))
+        flames.setFill("Red")
+        flames.setOutline("Orange")
         flames.draw(win)
 
-class Personel(object):
-    """draws personel"""
+class Personnel(object):
+    """draws personnel"""
     def __init__(self, X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win):
-        self.drawPersonel(X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win)
+        self.drawPersonnel(X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win)
 
-    def drawPersonel(self, X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win):
+    def drawPersonnel(self, X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win):
         head = Circle(Point(X + x, Y + y), 5)
         head.setFill(skinColor)
         head.setOutline(outline)
@@ -126,17 +173,122 @@ class Personel(object):
         line.setOutline(outline)
         line.draw(win)
 
+class Captain(Personnel):
+    """draws the captain"""
+    def __init__(self, X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win):
+        super().__init__(X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win)
+        self.drawHat(X, Y, x, y, uniformColor, outline, win)
+
+    def drawHat(self, X, Y, x, y, uniformColor, outline, win):
+        hat = Polygon(Point(X + x - 5, Y + y - 7), Point(X + x + 5, Y + y - 7), Point(X + x + 4, Y + y - 3), Point(X + x - 4, Y + y - 3))
+        hat.setFill(uniformColor)
+        hat.setOutline(outline)
+        hat.draw(win)
+
 class Boat(object):
     """draws a boat"""
     def __init__(self, X, Y, x, y, color, outline, win):
-         self.drawBoat(X, Y, x, y, color, outline, win)
+        self.drawBoat(X, Y, x, y, color, outline, win)
+        personnel1 = Personnel(X + x, Y + y, 65, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
+        personnel2 = Personnel(X + x, Y + y, 80, -35, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
+        personnel3 = Personnel(X + x, Y + y, 110, -43, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        captain = Captain(X + x, Y + y, 140, -40, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
 
     def drawBoat(self, X, Y, x, y, color, outline, win):
-        boat = Polygon(Point(X + x, Y + y), Point(X + x + 175, Y + y), Point(X + x + 125, Y + y + 50), Point(X + x + 75, Y + y + 50),
-                       Point(X + x, Y + y), Point(X + x + 75, Y + y - 25), Point(X + x + 100, Y + y - 25), Point(X + x + 175, Y + y))
-        boat.setFill(color)
-        boat.setOutline(outline)
-        boat.draw(win)
+        ship = Polygon(Point(X + x, Y + y), Point(X + x + 37, Y + y - 12), Point(X + x + 150, Y + y - 10), Point(X + x + 175, Y + y + 5),
+                       Point(X + x + 170, Y + y + 40), Point(X + x + 50, Y + y + 50))
+        ship.setFill(color)
+        ship.setOutline(outline)
+        ship.draw(win)
+        shipBase = Polygon(Point(X + x, Y + y), Point(X + x + 37, Y + y - 12), Point(X + x + 150, Y + y - 10), Point(X + x + 175, Y + y + 5),
+                           Point(X + x + 50, Y + y + 10))
+        shipBase.setFill(color)
+        shipBase.setOutline(outline)
+        shipBase.draw(win)
+        line = Line(Point(X + x + 50, Y + y + 50), Point(X + x + 50, Y + y + 10))
+        line.setOutline(outline)
+        line.draw(win)
+
+class SuperBoat(Boat):
+    """draws a boat with extra detail"""
+    def __init__(self, X, Y, x, y, color, outline, win):
+        super().__init__(X, Y, x, y, color, outline, win)
+        self.drawStar(X, Y, x, y, win)
+
+    def drawStar(self, X, Y, x, y, win):
+        star = Polygon(Point(X + x + 70, Y + y + 12), Point(X + x + 74, Y + y + 22), Point(X + x + 86, Y + y + 22), Point(X + x + 78, Y + y + 30),
+                       Point(X + x + 80, Y + y + 40), Point(X + x + 70, Y + y + 34), Point(X + x + 60, Y + y + 40), Point(X + x + 62, Y + y + 30),
+                       Point(X + x + 54, Y + y + 22), Point(X + x + 66, Y + y + 22))
+        star.setFill("Red")
+        star.setOutline("Black")
+        star.draw(win)
+
+class Tank(object):
+    """draws a tank"""
+    def __init__(self, X, Y, x, y, color, outline, win):
+        personnel1 = Personnel(X + x, Y + y, 65, -55, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        self.drawTreds(X, Y, x, y, color, outline, win)
+        self.drawCannon(X, Y, x, y, color, outline, win)
+        self.drawBody(X, Y, x, y, color, outline, win)
+
+    def drawTreds(self, X, Y, x, y, color, outline, win):
+        rect = Rectangle(Point(X + x, Y + y - 5), Point(X + x + 96, Y + y))
+        rect.setFill(color)
+        rect.setOutline(outline)
+        rect.draw(win)
+        rect = Rectangle(Point(X + x, Y + y), Point(X + x + 96, Y + y + 15))
+        rect.setFill("Black")
+        rect.setOutline("Black")
+        rect.draw(win)
+        circ = Circle(Point(X + x, Y + y + 8), 7)
+        circ.setFill("Black")
+        circ.setOutline("Black")
+        circ.draw(win)
+        circ = Circle(Point(X + x + 96, Y + y + 8), 7)
+        circ.setFill("Black")
+        circ.setOutline("Black")
+        circ.draw(win)
+        for i in range(9):
+            circ = Circle(Point(X + x + i * 12, Y + y + 8), 6)
+            circ.setFill(outline)
+            circ.setOutline("Black")
+            circ.draw(win)
+        line = Line(Point(X + x, Y + y + 8), Point(X + x + 96, Y + y + 8))
+        line.setOutline(color)
+        line.setWidth(2)
+        line.draw(win)
+
+    def drawCannon(self, X, Y, x, y, color, outline, win):
+        cannon = Polygon(Point(X + x + 50, Y + y - 25), Point(X + x + 50, Y + y - 35), Point(X + x - 10, Y + y - 33), Point(X + x - 10, Y + y - 27))
+        cannon.setFill(Color.darkGray)
+        cannon.setOutline(outline)
+        cannon.draw(win)
+        body = Polygon(Point(X + x + 30, Y + y - 15), Point(X + x + 50, Y + y - 40), Point(X + x + 80, Y + y - 40), Point(X + x + 90, Y + y - 15))
+        body.setFill(color)
+        body.setOutline(outline)
+        body.draw(win)
+
+    def drawBody(self, X, Y, x, y, color, outline, win):
+        body = Polygon(Point(X + x - 10, Y + y - 5), Point(X + x + 106, Y + y - 5), Point(X + x + 96, Y + y - 15), Point(X + x, Y + y - 15), )
+        body.setFill(color)
+        body.setOutline(outline)
+        body.draw(win)
+
+class SuperTank(Tank):
+    """draws the ultimate tank"""
+    def __init__(self, X, Y, x, y, color, outline, win):
+        super().__init__(X, Y, x, y, color, outline, win)
+        self.drawStar(X, Y, x, y, win)
+
+    def drawStar(self, X, Y, x, y, win):
+        star = Polygon(Point(X + x + 63, Y + y - 36), Point(X + x + 67, Y + y - 26), Point(X + x + 79, Y + y - 26),
+                       Point(X + x + 71, Y + y - 18), Point(X + x + 73, Y + y - 8), Point(X + x + 63, Y + y - 14),
+                       Point(X + x + 53, Y + y - 8), Point(X + x + 55, Y + y - 18), Point(X + x + 47, Y + y - 26),
+                       Point(X + x + 59, Y + y - 26))
+        star.setFill("Red")
+        star.setOutline("Black")
+        star.draw(win)
+
 
 class Color(object):
     """Holds colors"""
