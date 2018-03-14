@@ -10,6 +10,7 @@ class Water(object):
     """draws the water"""
     def __init__(self, color, win):
         self.drawWater(color, win)
+        self.drawFlag(win)
         self.drawIsland(win)
         tank1 = SuperTank(0, 0, 1350, 480, Color.lightGray, Color.darkGray, win)
         tank2 = SuperTank(0, 0, 1475, 470, Color.lightGray, Color.darkGray, win)
@@ -26,6 +27,24 @@ class Water(object):
         island.setFill(Color.tan)
         island.setOutline("Black")
         island.draw(win)
+
+    def drawFlag(self, win):
+        rect = Rectangle(Point(1330, 300), Point(1530, 333))
+        rect.setFill("White")
+        rect.setOutline("White")
+        rect.draw(win)
+        rect = Rectangle(Point(1330, 334), Point(1530, 366))
+        rect.setFill("Blue")
+        rect.setOutline("Blue")
+        rect.draw(win)
+        rect = Rectangle(Point(1330, 367), Point(1530, 400))
+        rect.setFill("Red")
+        rect.setOutline("Red")
+        rect.draw(win)
+        line = Line(Point(1530, 300), Point(1530, 500))
+        line.setOutline("Black")
+        line.setWidth(3)
+        line.draw(win)
 
 class Fleet(object):
     """draws everything from the fleet"""
