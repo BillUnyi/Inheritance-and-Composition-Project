@@ -1,14 +1,21 @@
 from graphics import *
+import random
 
 class Window(object):
     """Draws water and the fleet"""
     def __init__(self, win):
-        water = Water("Blue", win)
-        fleet = Fleet(win)
+        self.water1 = Water("Blue", win)
+        self.fleet1 = Fleet(win)
 
 class Water(object):
     """draws the water"""
     def __init__(self, color, win):
+        self.water = None
+        self.island = None
+        self.rect = None
+        self.rect1 = None
+        self.rect2 = None
+        self.line = None
         self.drawWater(color, win)
         self.drawFlag(win)
         self.drawIsland(win)
@@ -17,34 +24,34 @@ class Water(object):
         tank3 = SuperTank(0, 0, 1560, 480, Color.lightGray, Color.darkGray, win)
 
     def drawWater(self, color, win):
-        water = Rectangle(Point(-25, 500), Point(1925, 1050))
-        water.setFill(color)
-        water.setOutline(color)
-        water.draw(win)
+        self.water = Rectangle(Point(-25, 500), Point(1925, 1050))
+        self.water.setFill(color)
+        self.water.setOutline(color)
+        self.water.draw(win)
 
     def drawIsland(self, win):
-        island = Polygon(Point(1700, 500), Point(1500, 475), Point(1300, 500))
-        island.setFill(Color.tan)
-        island.setOutline("Black")
-        island.draw(win)
+        self.island = Polygon(Point(1700, 500), Point(1500, 475), Point(1300, 500))
+        self.island.setFill(Color.tan)
+        self.island.setOutline("Black")
+        self.island.draw(win)
 
     def drawFlag(self, win):
-        rect = Rectangle(Point(1330, 300), Point(1530, 333))
-        rect.setFill("White")
-        rect.setOutline("White")
-        rect.draw(win)
-        rect = Rectangle(Point(1330, 334), Point(1530, 366))
-        rect.setFill("Blue")
-        rect.setOutline("Blue")
-        rect.draw(win)
-        rect = Rectangle(Point(1330, 367), Point(1530, 400))
-        rect.setFill("Red")
-        rect.setOutline("Red")
-        rect.draw(win)
-        line = Line(Point(1530, 300), Point(1530, 500))
-        line.setOutline("Black")
-        line.setWidth(3)
-        line.draw(win)
+        self.rect = Rectangle(Point(1330, 300), Point(1530, 333))
+        self.rect.setFill("White")
+        self.rect.setOutline("White")
+        self.rect.draw(win)
+        self.rect1 = Rectangle(Point(1330, 334), Point(1530, 366))
+        self.rect1.setFill("Blue")
+        self.rect1.setOutline("Blue")
+        self.rect1.draw(win)
+        self.rect2 = Rectangle(Point(1330, 367), Point(1530, 400))
+        self.rect2.setFill("Red")
+        self.rect2.setOutline("Red")
+        self.rect2.draw(win)
+        self.line = Line(Point(1530, 300), Point(1530, 500))
+        self.line.setOutline("Black")
+        self.line.setWidth(3)
+        self.line.draw(win)
 
 class Fleet(object):
     """draws everything from the fleet"""
@@ -317,12 +324,30 @@ class Color(object):
     lightTan = color_rgb(246, 235, 204)
     tan = color_rgb(218, 193, 125)
     darkTan = color_rgb(97, 48, 0)
+    darkBlue = color_rgb(0, 0, 80)
+
+def war(win):
+    while win.checkMouse() == None:
+        win.setBackground(color_rgb(random.randrange(255), random.randrange(255), random.randrange(255)))
+        time.sleep(.05)
+
+def day(win, window):
+    win.setBackground(Color.darkBlue)
+    window.water1.water.setFill("Blue4")
+    window.water1.water.setOutline("Blue4")
+    win.getMouse()
 
 def main():
     win = GraphWin("Fleet", 1900, 1040) #fits my window at home, change if nessasary
     win.setBackground("Cyan")
     window = Window(win)
     win.getMouse()
+    war(win)
+    win.setBackground(Color.darkBlue)
+    window.water1.water.setFill("Blue4")
+    window.water1.water.setOutline("Blue4")
+    win.getMouse()
+    war(win)
     win.close()
 
 main()
