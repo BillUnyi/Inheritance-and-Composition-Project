@@ -1,4 +1,4 @@
-from Graphics import *
+from graphics import *
 import random
 
 class Window(object):
@@ -437,6 +437,7 @@ class TimeOfDay(object):
                     nuke = Nuke(win)
                     for i in range(20):
                         nuke.dropNuke()
+                    Time += 1
         return click
 
     @staticmethod
@@ -476,6 +477,7 @@ class TimeOfDay(object):
                 nuke = Nuke(win)
                 for i in range(20):
                     nuke.dropNuke()
+                Time += 1
         return click
 
 def main():
