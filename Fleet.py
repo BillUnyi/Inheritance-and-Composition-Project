@@ -401,6 +401,15 @@ class Nuke(object):
         self.rightWing.move(0, 50)
         self.leftWing.move(0, 50)
         time.sleep(.05)
+    
+    def undrawNuke(self):
+        self.nuke1.undraw()
+        self.rocket.undraw()
+        self.rect.undraw()
+        self.rect1.undraw()
+        self.rect2.undraw()
+        self.rightWing.undraw()
+        self.leftWing.undraw()
 
 class Color(object):
     """Holds colors"""
@@ -428,11 +437,13 @@ class TimeOfDay(object):
                     time.sleep(.1)
                     Tank.TANKS[index].fire.undraw()
                 coordinate = win.checkMouse()
-                if coordinate is None:
+                Key = win.checkKey()
+                if Key == "q":
+                    click = False
+                elif coordinate is None:
                     time.sleep(.05)
                     Time += .05
                 else:
-                    #click = False
                     Nuke.xValue = coordinate.x
                     nuke = Nuke(win)
                     for i in range(20):
@@ -468,11 +479,13 @@ class TimeOfDay(object):
         Time = 0
         while Time < 10 and click:
             coordinate = win.checkMouse()
-            if coordinate is None:
+            Key = win.checkKey()
+            if Key == "q":
+                click = False
+            elif coordinate is None:
                 time.sleep(.05)
                 Time += .05
             else:
-                #click = False
                 Nuke.xValue = coordinate.x
                 nuke = Nuke(win)
                 for i in range(20):
