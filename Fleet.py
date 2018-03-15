@@ -393,13 +393,13 @@ class Nuke(object):
         self.leftWing.draw(win)
 
     def dropNuke(self):
-        self.nuke1.move(0, 20)
-        self.rocket.move(0, 20)
-        self.rect.move(0, 20)
-        self.rect1.move(0, 20)
-        self.rect2.move(0, 20)
-        self.rightWing.move(0, 20)
-        self.leftWing.move(0, 20)
+        self.nuke1.move(0, 50)
+        self.rocket.move(0, 50)
+        self.rect.move(0, 50)
+        self.rect1.move(0, 50)
+        self.rect2.move(0, 50)
+        self.rightWing.move(0, 50)
+        self.leftWing.move(0, 50)
         time.sleep(.05)
 
 class Color(object):
@@ -432,10 +432,10 @@ class TimeOfDay(object):
                     time.sleep(.05)
                     Time += .05
                 else:
-                    click = False
+                    #click = False
                     Nuke.xValue = coordinate.x
                     nuke = Nuke(win)
-                    for i in range(50):
+                    for i in range(20):
                         nuke.dropNuke()
         return click
 
@@ -471,10 +471,10 @@ class TimeOfDay(object):
                 time.sleep(.05)
                 Time += .05
             else:
-                click = False
+                #click = False
                 Nuke.xValue = coordinate.x
                 nuke = Nuke(win)
-                for i in range(50):
+                for i in range(20):
                     nuke.dropNuke()
         return click
 
