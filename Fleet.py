@@ -1,14 +1,18 @@
-from graphics import *
+from Graphics import *
 import random
+
 
 class Window(object):
     """Draws water and the fleet"""
+
     def __init__(self, win):
         self.water1 = Water("Blue", win)
         self.fleet1 = Fleet(win)
 
+
 class Water(object):
     """draws the water"""
+
     def __init__(self, color, win):
         self.water = None
         self.sun = None
@@ -106,7 +110,7 @@ class Water(object):
         self.oval8.setFill("White")
         self.oval8.setOutline("Black")
         self.oval8.draw(win)
-            
+
     def undrawClouds(self):
         self.oval.undraw()
         self.oval1.undraw()
@@ -119,43 +123,80 @@ class Water(object):
         self.oval8.undraw()
 
     def drawStars(self, win):
-        self.star = Polygon(Point(300, 400), Point(310, 430), Point(340, 440), Point(310, 450), Point(300, 480), Point(290, 450), Point(260, 440), Point(290, 430))
+        x = 300
+        y = 400
+        self.star = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star.setFill("Yellow")
         self.star.setOutline("Black")
         self.star.draw(win)
-        self.star1 = Polygon(Point(550, 140), Point(650, 165))
+        x = 550
+        y = 140
+        self.star1 = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star1.setFill("Yellow")
         self.star1.setOutline("Black")
         self.star1.draw(win)
-        self.star2 = Polygon(Point(800, 120), Point(900, 145))
+        x = 800
+        y = 120
+        self.star2 = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star2.setFill("Yellow")
         self.star2.setOutline("Black")
         self.star2.draw(win)
-        self.star3 = Polygon(Point(1000, 300), Point(1100, 325))
+        x = 1000
+        y = 300
+        self.star3 = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star3.setFill("Yellow")
         self.star3.setOutline("Black")
         self.star3.draw(win)
-        self.star4 = Polygon(Point(1750, 320), Point(1850, 345))
+        x = 1750
+        y = 320
+        self.star4 = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star4.setFill("Yellow")
         self.star4.setOutline("Black")
         self.star4.draw(win)
-        self.star5 = Polygon(Point(1300, 220), Point(1400, 245))
+        x = 1300
+        y = 220
+        self.star5 = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star5.setFill("Yellow")
         self.star5.setOutline("Black")
         self.star5.draw(win)
-        self.star6 = Polygon(Point(100, 100), Point(200, 125))
+        x = 100
+        y = 100
+        self.star6 = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star6.setFill("Yellow")
         self.star6.setOutline("Black")
         self.star6.draw(win)
-        self.star7 = Polygon(Point(750, 440), Point(850, 465))
+        x = 750
+        y = 380
+        self.star7 = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star7.setFill("Yellow")
         self.star7.setOutline("Black")
         self.star7.draw(win)
-        self.star8 = Polygon(Point(1500, 75), Point(1600, 100))
+        x = 1500
+        y = 75
+        self.star8 = Polygon(Point(x, y), Point(x + 10, y + 30), Point(x + 40, y + 40), Point(x + 10, y + 50), Point(x, y + 80),
+                            Point(x - 10, y + 50), Point(x - 40, y + 40), Point(x - 10, y + 30))
         self.star8.setFill("Yellow")
         self.star8.setOutline("Black")
         self.star8.draw(win)
 
+    def undrawStars(self):
+        self.star.undraw()
+        self.star1.undraw()
+        self.star2.undraw()
+        self.star3.undraw()
+        self.star4.undraw()
+        self.star5.undraw()
+        self.star6.undraw()
+        self.star7.undraw()
+        self.star8.undraw()
 
 class Fleet(object):
     """draws everything from the fleet"""
@@ -608,8 +649,10 @@ class Nuke(object):
     def drawExplosion(self, win):
         y = self.y + 1025
         x = self.x + random.randrange(10) - 5
-        self.explosion = Polygon(Point(x - 75, y), Point(x - 80, y - 350), Point(x - 55, y - 125), Point(x - 45, y - 375), Point(x - 20, y - 150),
-                                 Point(x, y - 400), Point(x + 20, y - 150), Point(x + 45, y - 375), Point(x + 55, y - 125), Point(x + 80, y - 350),
+        self.explosion = Polygon(Point(x - 75, y), Point(x - 80, y - 350), Point(x - 55, y - 125),
+                                 Point(x - 45, y - 375), Point(x - 20, y - 150),
+                                 Point(x, y - 400), Point(x + 20, y - 150), Point(x + 45, y - 375),
+                                 Point(x + 55, y - 125), Point(x + 80, y - 350),
                                  Point(x + 75, y))
         self.explosion.setFill("Red")
         self.explosion.setOutline("Orange")
@@ -618,6 +661,7 @@ class Nuke(object):
 
     def undrawExplosion(self):
         self.explosion.undraw()
+
 
 class Color(object):
     """Holds colors"""
@@ -671,6 +715,7 @@ class TimeOfDay(object):
         if click:
             win.setBackground("Cyan")
             window.water1.moon.undraw()
+            window.water1.undrawStars()
             window.water1.drawSun(win)
             window.water1.drawClouds(win)
             window.water1.water.setFill("Blue")
@@ -717,6 +762,7 @@ class TimeOfDay(object):
                 Time += 1.5
         return click
 
+
 def main():
     win = GraphWin("Fleet", 1900, 1040)  # fits my window at home, change if nessasary
     win.setBackground("Cyan")
@@ -728,5 +774,6 @@ def main():
         click = TimeOfDay.war(win, click)
         click = TimeOfDay.day(win, window, click)
     win.close()
+
 
 main()
