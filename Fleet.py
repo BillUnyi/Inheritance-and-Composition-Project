@@ -1,6 +1,6 @@
-from Graphics import *
+from graphics import *
 import random
-
+import wave
 
 class Window(object):
     """Draws water and the fleet"""
@@ -69,8 +69,8 @@ class Water(object):
 
     def drawMoon(self, win):
         self.moon = Circle(Point(1700, 150), 50)
-        self.moon.setFill(Color.lightGray)
-        self.moon.setOutline(Color.darkGray)
+        self.moon.setFill(Color.darkGray)
+        self.moon.setOutline(Color.lightGray)
         self.moon.draw(win)
 
     def drawClouds(self, win):
@@ -687,6 +687,9 @@ class TimeOfDay(object):
                 if random.randrange(5) == 0:
                     index = random.randrange(len(Tank.TANKS))
                     Tank.TANKS[index].fire.draw(win)
+                    explosion = wave.open('Explosion+3.wav', 'wb')
+                    explosion.setnchannels(1)
+                    explosion.setsampwidth(5)
                     time.sleep(.1)
                     Tank.TANKS[index].fire.undraw()
                 coordinate = win.checkMouse()
