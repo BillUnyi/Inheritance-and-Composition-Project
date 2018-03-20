@@ -1,6 +1,6 @@
 from graphics import *
 import random
-import wave
+import winsound
 
 class Window(object):
     """Draws water and the fleet"""
@@ -682,14 +682,17 @@ class TimeOfDay(object):
         if click:
             click = True
             Time = 0
+            winsound.PlaySound('Machine+Gun+3.wav', winsound.SND_ASYNC)
             while Time < 8 and click:
                 win.setBackground(color_rgb(random.randrange(255), random.randrange(255), random.randrange(255)))
+                if random.randrange(25) == 0:
+                    winsound.PlaySound('Machine+Gun+3.wav', winsound.SND_ASYNC)
+                elif random.randrange(25) == 0:
+                    winsound.PlaySound('Machine+Gun+4.wav', winsound.SND_ASYNC)
                 if random.randrange(5) == 0:
                     index = random.randrange(len(Tank.TANKS))
                     Tank.TANKS[index].fire.draw(win)
-                    explosion = wave.open('Explosion+3.wav', 'wb')
-                    explosion.setnchannels(1)
-                    explosion.setsampwidth(5)
+                    winsound.PlaySound('Explosion+3.wav', winsound.SND_ASYNC)
                     time.sleep(.1)
                     Tank.TANKS[index].fire.undraw()
                 coordinate = win.checkMouse()
@@ -703,10 +706,12 @@ class TimeOfDay(object):
                     Nuke.xValue = coordinate.x
                     nuke = Nuke(win)
                     nuke.drawSight(win)
+                    winsound.PlaySound('Missile+1.wav', winsound.SND_ASYNC)
                     for i in range(10):
                         nuke.dropNuke()
                     nuke.undrawNuke()
                     nuke.undrawSight()
+                    winsound.PlaySound('Bomb+1.wav', winsound.SND_ASYNC)
                     for j in range(20):
                         nuke.drawExplosion(win)
                         nuke.undrawExplosion()
@@ -723,6 +728,7 @@ class TimeOfDay(object):
             window.water1.drawClouds(win)
             window.water1.water.setFill("Blue")
             window.water1.water.setOutline("Blue")
+            winsound.PlaySound('ocean-wave-1.wav', winsound.SND_ASYNC)
             click = TimeOfDay.clicked(win)
         return click
 
@@ -736,6 +742,7 @@ class TimeOfDay(object):
             window.water1.drawStars(win)
             window.water1.water.setFill("Blue4")
             window.water1.water.setOutline("Blue4")
+            winsound.PlaySound('ocean-wave-1.wav', winsound.SND_ASYNC)
             click = TimeOfDay.clicked(win)
         return click
 
@@ -755,13 +762,16 @@ class TimeOfDay(object):
                 Nuke.xValue = coordinate.x
                 nuke = Nuke(win)
                 nuke.drawSight(win)
+                winsound.PlaySound('Missile+1.wav', winsound.SND_ASYNC)
                 for i in range(10):
                     nuke.dropNuke()
                 nuke.undrawNuke()
                 nuke.undrawSight()
+                winsound.PlaySound('Bomb+1.wav', winsound.SND_ASYNC)
                 for j in range(20):
                     nuke.drawExplosion(win)
                     nuke.undrawExplosion()
+                winsound.PlaySound('ocean-wave-1.wav', winsound.SND_ASYNC)
                 Time += 1.5
         return click
 
@@ -770,6 +780,7 @@ def main():
     win = GraphWin("Fleet", 1900, 1040)  # fits my window at home, change if nessasary
     win.setBackground("Cyan")
     window = Window(win)
+    winsound.PlaySound('ocean-wave-1.wav', winsound.SND_ASYNC)
     click = TimeOfDay.clicked(win)
     while click:
         click = TimeOfDay.war(win, click)
