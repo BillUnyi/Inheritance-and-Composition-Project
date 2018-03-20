@@ -685,11 +685,13 @@ class TimeOfDay(object):
             winsound.PlaySound('Machine+Gun+3.wav', winsound.SND_ASYNC)
             while Time < 8 and click:
                 win.setBackground(color_rgb(random.randrange(255), random.randrange(255), random.randrange(255)))
-                if random.randrange(25) == 0:
-                    winsound.PlaySound('Machine+Gun+3.wav', winsound.SND_ASYNC)
-                elif random.randrange(25) == 0:
-                    winsound.PlaySound('Machine+Gun+4.wav', winsound.SND_ASYNC)
-                if random.randrange(5) == 0:
+                #if random.randrange(25) == 0:
+                    #winsound.PlaySound('Machine+Gun+3.wav', winsound.SND_ASYNC)
+                    #time.sleep(.1)
+                #elif random.randrange(25) == 0:
+                    #winsound.PlaySound('Machine+Gun+4.wav', winsound.SND_ASYNC)
+                    #time.sleep(.1)
+                if random.randrange(10) == 0:
                     index = random.randrange(len(Tank.TANKS))
                     Tank.TANKS[index].fire.draw(win)
                     winsound.PlaySound('Explosion+3.wav', winsound.SND_ASYNC)
@@ -699,6 +701,8 @@ class TimeOfDay(object):
                 Key = win.checkKey()
                 if Key == "q":
                     click = False
+                    win.setBackground("Red4")
+                    winsound.PlaySound('Bomb+1.wav', winsound.SND_ALIAS)
                 elif coordinate is None:
                     time.sleep(.05)
                     Time += .05
@@ -750,11 +754,13 @@ class TimeOfDay(object):
     def clicked(win):
         click = True
         Time = 0
-        while Time < 10 and click:
+        while Time < 15 and click:
             coordinate = win.checkMouse()
             Key = win.checkKey()
             if Key == "q":
                 click = False
+                win.setBackground("Red4")
+                winsound.PlaySound('Bomb+1.wav', winsound.SND_ALIAS)
             elif coordinate is None:
                 time.sleep(.05)
                 Time += .05
@@ -771,7 +777,7 @@ class TimeOfDay(object):
                 for j in range(20):
                     nuke.drawExplosion(win)
                     nuke.undrawExplosion()
-                winsound.PlaySound('ocean-wave-1.wav', winsound.SND_ASYNC)
+                winsound.PlaySound('National Anthem of USSR.wav', winsound.SND_ASYNC)
                 Time += 1.5
         return click
 
