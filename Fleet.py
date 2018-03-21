@@ -222,7 +222,7 @@ class AircraftCarrier(object):
         personnel5 = Personnel(x, y, 240, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
         personnel6 = Personnel(x, y, 220, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
         personnel7 = Personnel(x, y, 230, -30, Color.tan, Color.darkGray1, "Blue4", "Black", win)
-        captain = Captain(x, y, 260, -30, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        captain = Captain(x, y, 260, -30, Color.lightTan, Color.darkGray1, "Blue4", "Red", "Black", win)
         boat1 = Boat(x, y, -200, 100, "Gray", "Gray3", win)
         boat2 = SuperBoat(x, y, -300, 200, "Gray", "Gray3", win)
 
@@ -257,7 +257,7 @@ class SuperAircraftCarrier(AircraftCarrier):
         personnel5 = Personnel(x, y, 240, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
         personnel6 = Personnel(x, y, 220, -50, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
         personnel7 = Personnel(x, y, 230, -30, Color.tan, Color.darkGray1, "Blue4", "Black", win)
-        captain = Captain(x, y, 260, -30, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        captain = Captain(x, y, 260, -30, Color.lightTan, Color.darkGray1, "Blue4", "Red", "Black", win)
         boat1 = Boat(x, y, -200, 100, "Gray", "Gray3", win)
         boat2 = SuperBoat(x, y, -300, 200, "Gray", "Gray3", win)
         tank1 = Tank(x, y, 350, -30, Color.lightGray, Color.darkGray, win)
@@ -368,14 +368,14 @@ class Personnel(object):
 class Captain(Personnel):
     """draws the captain"""
 
-    def __init__(self, X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win):
+    def __init__(self, X, Y, x, y, skinColor, uniformColor, pantsColor, hatColor, outline, win):
         super().__init__(X, Y, x, y, skinColor, uniformColor, pantsColor, outline, win)
-        self.drawHat(X, Y, x, y, uniformColor, outline, win)
+        self.drawHat(X, Y, x, y, hatColor, outline, win)
 
-    def drawHat(self, X, Y, x, y, uniformColor, outline, win):
+    def drawHat(self, X, Y, x, y, hatColor, outline, win):
         hat = Polygon(Point(X + x - 5, Y + y - 7), Point(X + x + 5, Y + y - 7), Point(X + x + 4, Y + y - 3),
                       Point(X + x - 4, Y + y - 3))
-        hat.setFill(uniformColor)
+        hat.setFill(hatColor)
         hat.setOutline(outline)
         hat.draw(win)
 
@@ -388,7 +388,7 @@ class Boat(object):
         personnel1 = Personnel(X + x, Y + y, 65, -40, Color.tan, Color.darkGray1, "Blue4", "Black", win)
         personnel2 = Personnel(X + x, Y + y, 80, -35, Color.darkTan, Color.darkGray1, "Blue4", "Black", win)
         personnel3 = Personnel(X + x, Y + y, 110, -43, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
-        captain = Captain(X + x, Y + y, 140, -40, Color.lightTan, Color.darkGray1, "Blue4", "Black", win)
+        captain = Captain(X + x, Y + y, 140, -40, Color.lightTan, Color.darkGray1, "Blue4", "Red", "Black", win)
 
     def drawBoat(self, X, Y, x, y, color, outline, win):
         ship = Polygon(Point(X + x, Y + y), Point(X + x + 37, Y + y - 12), Point(X + x + 150, Y + y - 10),
